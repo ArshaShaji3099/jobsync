@@ -1,0 +1,39 @@
+services:
+  db:
+    image: mysql:8.4
+    container_name: jobsync-db
+    restart: always
+
+    environment:
+      MYSQL_DATABASE: jobsync
+      MYSQL_USER: jobsync_user
+      MYSQL_PASSWORD: jobsync_password
+      MYSQL_ROOT_PASSWORD: rootpassword
+
+    ports:
+      - "3307:3306"
+
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+
+    container_name: jobsync-backend
+
+    volumes:
+      - ./backend:/app
+
+    ports:
+      - "8000:8000"
+
+    depends_on:
+      - db
+
+    stdin_open: true
+    tty: true
+
+volumes:
+  mysql_data:
