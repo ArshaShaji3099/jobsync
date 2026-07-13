@@ -1,2 +1,16 @@
-# jobsync
-JobSync is a full-stack smart job portal that connects job seekers and recruiters through intelligent job matching, automated applications, resume management, and analytics.
+
+# JobSync
+
+JobSync is a full-stack job portal built using:
+
+- Django REST Framework
+- React + Vite
+- PostgreSQL
+- Docker
+- JWT Authentication
+
+
+
+## Project Status
+
+🚧 Under Development
