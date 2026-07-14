@@ -21,6 +21,9 @@ services:
       context: ./backend
       dockerfile: Dockerfile
 
+    env_file:
+      - .env
+
     container_name: jobsync-backend
 
     volumes:
