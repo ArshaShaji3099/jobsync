@@ -29,8 +29,34 @@ services:
     ports:
       - "8000:8000"
 
+    command: python manage.py runserver 0.0.0.0:8000
+
     depends_on:
       - db
+
+    stdin_open: true
+    tty: true
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+
+    container_name: jobsync-frontend
+
+    working_dir: /app
+
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+
+    ports:
+      - "5173:5173"
+
+    command: npm run dev -- --host
+
+    depends_on:
+      - backend
 
     stdin_open: true
     tty: true
